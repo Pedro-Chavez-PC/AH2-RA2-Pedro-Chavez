@@ -60,7 +60,7 @@ public class Serpientes_y_Escaleras {
 
             switch (opcion) {
                 case ("d"):
-                    int dado = (int) (Math.random() * (6 - 2) + 2);
+                    int dado = (int) (Math.random() * (7 - 2) + 2);
                     System.out.println( "⠀⠀⠀⡿⡍⡖⠲⡄⠀⠀⠀⠀⠀⠀⠀⢀⣀⠀⠀⠀\n" +
                                         "⠀⠀⡼⠙⠚⠁⠀⠸⣄⡤⠖⠦⣄⠀⠀⢸⠿⣿⣷⡀  ┌───────────────┐\n" +
                                         "⠀⠀⡇⠀⠀⢀⡖⢰⡏⠀⠀⠀⠘⡄⡠⢼⣦⠈⣿⣇    |                           |\n" +
@@ -176,7 +176,9 @@ public class Serpientes_y_Escaleras {
                     break;
                     
                 default:
-                    System.out.println("Ingresa la opcion correcta por favor.");
+                    System.out.println("┌────────────────────────┐");
+                    System.out.println("│         ¡Esta opcion no existe!        │");
+                    System.out.println("└────────────────────────┘");
                     break;
             }
         }
@@ -222,21 +224,24 @@ public class Serpientes_y_Escaleras {
             }  
         }
         
-        for (int i = 0; i < trampas.length; i++) {
+        for (int i = 0; i < 8; i++) {
+            int trampasPorFila = (int) (Math.random() * (4 - 1) + 1);
             int trampasGeneradas = 0;
-            for (int j = 0; j < trampas[i].length; j++) {
-                if (trampas[i][j] != '#') {
-                    if (Math.random() * 10 < 6 && trampasGeneradas < 4) {
+            for (int j = 0; j < 8; j++) {
+                if (trampasGeneradas < trampasPorFila) {
+                    if (Math.random() < 0.5) {
                         trampas[i][j] = '#';
                         trampasGeneradas++;
                     } else {
                         trampas[i][j] = ' ';
                     }
+                } else {
+                    trampas[i][j] = ' ';
                 }
             }
         }
     }
-    
+     
     int menu_principal(int opcion){
 
         boolean menu = true;
@@ -249,7 +254,6 @@ public class Serpientes_y_Escaleras {
             System.out.println("* 2. Salir                        *");
             System.out.println("***********************************");
             System.out.print("Ingrese su opción: ");
-            System.out.print("Ingrese un dato: ");
             if (accion.hasNextInt()) {
                 opcion = accion.nextInt();
                 switch (opcion) {
